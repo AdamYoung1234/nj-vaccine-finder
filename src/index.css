@@ -1,13 +1,64 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app {
+  padding-top: 15px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.no-appointment-container {
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-refinement__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-refinement__dropdown {
+  display: flex;
+  width: 60%;
+  margin-right: 10px;
+}
+
+.search-refinement__checkbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  min-width: 100vw;
+  flex: none;
+  flex-shrink: 0;
+}
+
+.footer__container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__segment {
+    border-radius: 0;
+    width: 100%;
+}
+
+.footer__container {
+    text-align: center;
+    width: 100%;
+}
+
+.page-container {
+  flex: 1 0 auto;
 }
