@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData } from './services';
-import { Checkbox, Container, Dropdown, Header } from 'semantic-ui-react';
+import {
+  Checkbox,
+  Container,
+  Dropdown,
+  Header,
+  Icon,
+  Pagination,
+} from 'semantic-ui-react';
 import Loader from './components/Loader/Loader';
 import VaccineInfoTable from './components/Table/VaccineInfoTable';
 import NoAvailableAppointment from './components/NoAvailableAppointment/NoAvailableAppointment';
 import Footer from './components/Footer/Footer';
+
+const pageSize = 10;
 
 function App() {
   const [vaccineInfo, setVaccineInfo] = useState();
@@ -12,6 +21,11 @@ function App() {
   const [counties, setCounties] = useState([]);
   const [countyToSearch, setCountyToSearch] = useState();
   const [onlyShowAvailable, setOnlyShowAvailable] = useState(false);
+  const [activePage, setActivePage] = useState(1);
+
+  const handlePageChange = (_, { activePage: page }) => {
+    setActivePage(page);
+  };
 
   const renderPage = () => (
     <React.Fragment>
@@ -29,6 +43,7 @@ function App() {
             value={countyToSearch}
             onChange={(_, { value }) => {
               setCountyToSearch(value || undefined);
+              setActivePage(1);
             }}
             options={counties.map((county) => ({
               key: county,
@@ -49,7 +64,37 @@ function App() {
         </div>
       </section>
       {vaccineInfo.length > 0 ? (
-        <VaccineInfoTable vaccineInfo={vaccineInfo} />
+        <React.Fragment>
+          <VaccineInfoTable
+            vaccineInfo={vaccineInfo}
+            activePage={activePage}
+            pageSize={pageSize}
+          />
+          <div className="pagination-container">
+            <Pagination
+              activePage={activePage}
+              boundaryRange={3}
+              onPageChange={handlePageChange}
+              siblingRange={2}
+              size="small"
+              totalPages={Math.ceil(vaccineInfo.length / pageSize)}
+              ellipsisItem={{
+                content: <Icon name="ellipsis horizontal" />,
+                icon: true,
+              }}
+              firstItem={{
+                content: <Icon name="angle double left" />,
+                icon: true,
+              }}
+              lastItem={{
+                content: <Icon name="angle double right" />,
+                icon: true,
+              }}
+              prevItem={{ content: <Icon name="angle left" />, icon: true }}
+              nextItem={{ content: <Icon name="angle right" />, icon: true }}
+            />
+          </div>
+        </React.Fragment>
       ) : (
         <NoAvailableAppointment />
       )}
@@ -62,9 +107,9 @@ function App() {
       setVaccineInfo(data);
       setData(data);
       setCounties(
-        [
-          ...new Set(data.map(({ official: { County: county } }) => county)),
-        ].filter(Boolean).sort()
+        [...new Set(data.map(({ official: { County: county } }) => county))]
+          .filter(Boolean)
+          .sort()
       );
     };
 
@@ -88,7 +133,9 @@ function App() {
 
   return (
     <div className="app">
-      <Container className="page-container">{vaccineInfo ? renderPage() : <Loader />}</Container>
+      <Container className="page-container">
+        {vaccineInfo ? renderPage() : <Loader />}
+      </Container>
       <div className="footer">
         <Footer />
       </div>

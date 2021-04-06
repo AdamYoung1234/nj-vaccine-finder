@@ -62,3 +62,8 @@
 .page-container {
   flex: 1 0 auto;
 }
+
+.pagination-container {
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
