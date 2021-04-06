@@ -72,10 +72,9 @@ function App() {
           />
           <div className="pagination-container">
             <Pagination
+              defaultActivePage={1}
               activePage={activePage}
-              boundaryRange={3}
               onPageChange={handlePageChange}
-              siblingRange={2}
               size="small"
               totalPages={Math.ceil(vaccineInfo.length / pageSize)}
               ellipsisItem={{

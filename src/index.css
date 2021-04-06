@@ -47,16 +47,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .footer__segment {
-    border-radius: 0;
-    width: 100%;
-}
-
-.footer__container {
-    text-align: center;
-    width: 100%;
+  width: 100%;
 }
 
 .page-container {
@@ -64,6 +59,6 @@
 }
 
 .pagination-container {
-    padding-top: 10px;
-    padding-bottom: 25px;
+  padding-top: 10px;
+  padding-bottom: 25px;
 }

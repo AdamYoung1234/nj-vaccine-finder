@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Icon, Item, Label, Pagination } from 'semantic-ui-react';
+import { Button, Icon, Item, Label } from 'semantic-ui-react';
 
 const nomalize = (s) => s.split('\n').join(', ');
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
