@@ -16,7 +16,7 @@ function App() {
   const renderPage = () => (
     <React.Fragment>
       <Header as="h1" size="huge">
-        New Jersey Vaccine Finder
+        New Jersey COVID-19 Vaccine Finder
       </Header>
       <section className="search-refinement__container">
         <div className="search-refinement__dropdown">
