@@ -17,7 +17,7 @@ steps:
     commands:
       - yarn build
 
-  - name: push docker
+  - name: publish
     image: plugins/docker
     settings:
       username:
