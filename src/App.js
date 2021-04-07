@@ -72,7 +72,6 @@ function App() {
           />
           <div className="pagination-container">
             <Pagination
-              defaultActivePage={1}
               activePage={activePage}
               onPageChange={handlePageChange}
               size="small"
@@ -127,6 +126,7 @@ function App() {
       );
 
       setVaccineInfo(filtered);
+      setActivePage(1);
     }
   }, [countyToSearch, data, onlyShowAvailable]);
 
