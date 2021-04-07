@@ -1,0 +1,28 @@
+kind: pipeline
+type: docker
+name: default
+
+workspace:
+  path: /nj-vaccine-finder/src
+
+steps:
+  - name: test
+    image: node
+    commands:
+      - yarn install
+      - CI=true yarn test
+
+  - name: build
+    image: node
+    commands:
+      - yarn build
+
+  - name: push docker
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: p1114501510/nj-vaccine-finder
+      dockerfile: Dockerfile
