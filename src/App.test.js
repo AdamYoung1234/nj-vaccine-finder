@@ -43,7 +43,7 @@ describe('app', () => {
     );
 
     const footer = screen.getByText(
-      '\u00A9 Chen Yang. Powered by React & Semantic UI.'
+      '\u00A9 2021 Chen Yang. Powered by React & Semantic UI.'
     );
     expect(footer).toBeVisible();
   });
