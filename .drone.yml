@@ -26,3 +26,15 @@ steps:
         from_secret: docker_password
       repo: p1114501510/nj-vaccine-finder
       dockerfile: Dockerfile
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    settings:
+      host: 80386.io
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      port: 22
+      script:
+        - bash ~/update-nj-vaccine-finder.sh
