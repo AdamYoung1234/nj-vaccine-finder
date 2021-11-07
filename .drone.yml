@@ -7,13 +7,13 @@ workspace:
 
 steps:
   - name: test
-    image: node
+    image: node:lts-fermium
     commands:
       - yarn install
       - CI=true yarn test
 
   - name: build
-    image: node
+    image: node:lts-fermium
     commands:
       - yarn build
 
