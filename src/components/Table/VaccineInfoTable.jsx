@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Icon, Item, Label } from 'semantic-ui-react';
 
-const nomalize = (s) => s.split('\n').join(', ');
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const formatDate = (date) => new Date(date).toLocaleString();
 const mapBaseUrl = 'https://www.google.com/maps/dir/';
@@ -24,18 +23,20 @@ const VaccineInfoTable = ({ vaccineInfo, activePage, pageSize }) => {
             checked_at,
             official: {
               'Facility Name': name,
-              'Facility Address': address,
               'Facility Website': website,
               'Phone Number for Appointments + Questions': phone,
               'Minimum Age': minAge,
               isMegasite,
             },
+            geodata: {
+              match_addr: address
+            }
           }) => (
-            <Item key={`${name}${address}`}>
+            <Item key={`${name}${address}${minAge}`}>
               <Item.Content>
                 <Item.Header>{name}</Item.Header>
                 <Item.Meta>
-                  <span>{nomalize(address)}</span>
+                  <span>{address}</span>
                 </Item.Meta>
                 <Item.Description>
                   {available && (
